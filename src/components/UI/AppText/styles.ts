@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { COLORS, fontSizes } from '../../../designSystem/designSystem';
 
 export const styles = StyleSheet.create({
   text: {
-    fontSize: 16,
-    color: '#222',
+    fontSize: fontSizes.normal,
+    color: COLORS.text,
   },
 });

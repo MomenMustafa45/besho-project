@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import React from 'react';
+import AppView from '../UI/AppView/AppView';
 
 const ScreenHeader = () => {
   return (
-    <View>
+    <AppView>
       <Text>ScreenHeader</Text>
-    </View>
+    </AppView>
   );
 };
 

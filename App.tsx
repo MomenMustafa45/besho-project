@@ -1,8 +1,8 @@
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import AppText from './src/components/UI/AppText/AppText';
-import { useTranslation } from 'react-i18next';
 import './i18n';
+import React from 'react';
+import Mp3PlayerScreen from './src/screens/PlayerScreen/PlayerScreen';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,11 +18,9 @@ function App() {
 }
 
 function AppContent() {
-  const { t } = useTranslation();
-
   return (
     <View style={styles.container}>
-      <AppText>{t('welcome')}</AppText>
+      <Mp3PlayerScreen />
     </View>
   );
 }
