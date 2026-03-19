@@ -1,4 +1,8 @@
 {
   "welcome": "Welcome to our app!",
-  "loginButton": "Log In"
+  "loginButton": "Log In",
+  "privacyPolicy": "Privacy Policy",
+  "aboutApplication": "About Application",
+  "shareApplication": "Share Application",
+  "changeLanguageToArabic": "Change Language To Arabic"
 }

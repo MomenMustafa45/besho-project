@@ -4,7 +4,7 @@ import Settings from '../screens/Settings/Settings';
 import Privacy from '../screens/Settings/screens/Privacy/Privacy';
 import About from '../screens/Settings/screens/About/About';
 
-type SettingsStackNavigationType = {
+export type SettingsStackNavigationType = {
   Settings: undefined;
   Privacy: undefined;
   About: undefined;
@@ -16,7 +16,7 @@ const SettingsStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        statusBarHidden: true,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Settings" component={Settings} />

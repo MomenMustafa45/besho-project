@@ -1,4 +1,8 @@
 {
   "welcome": "مرحباً بك في تطبيقنا!",
-  "loginButton": "تسجيل الدخول"
+  "loginButton": "تسجيل الدخول",
+  "privacyPolicy": "سياسة الخصوصية",
+  "aboutApplication": "حول التطبيق",
+  "shareApplication": "مشاركة التطبيق",
+  "changeLanguageToArabic": "تغيير اللغة إلى الانجليزيه"
 }

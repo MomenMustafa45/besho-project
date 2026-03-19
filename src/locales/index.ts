@@ -1,4 +1,7 @@
 export enum LocalizationEnum {
-  welcome = 'welcome',
-  loginButton = 'loginButton',
+  // Settings / More
+  privacyPolicy = 'privacyPolicy',
+  aboutApplication = 'aboutApplication',
+  shareApplication = 'shareApplication',
+  changeLanguageToArabic = 'changeLanguageToArabic',
 }

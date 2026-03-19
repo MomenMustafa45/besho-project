@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, ViewProps, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewProps, ViewStyle } from 'react-native';
 
 interface Props extends ViewProps {
   padding?: number;
   margin?: number;
   backgroundColor?: string;
   borderRadius?: number;
-  style?: ViewStyle | ViewStyle[];
+  style?: StyleProp<ViewStyle>;
 }
 
 const AppView: React.FC<Props> = ({

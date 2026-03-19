@@ -14,13 +14,14 @@ function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   useEffect(() => {
-    const isRTL = i18n.language === 'ar';
+    const isRTL = i18n.language.startsWith('ar');
 
     if (I18nManager.isRTL !== isRTL) {
-      I18nManager.forceRTL(isRTL);
       I18nManager.allowRTL(isRTL);
+      I18nManager.forceRTL(isRTL);
 
       RNRestart.Restart();
+      return;
     }
 
     BootSplash.hide({ fade: false });

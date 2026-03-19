@@ -5,6 +5,7 @@ import CurrentHymns from '../screens/CurrentHymns/CurrentHymns';
 import Favroites from '../screens/Favorites/Favroites';
 import { COLORS } from '../designSystem/designSystem';
 import { getTabBarIcon } from '../utils/getTabBarIcon';
+import SettingsStack from './SettingsStack';
 
 type BottomTabsNavigationType = {
   Hymns: undefined;
@@ -66,7 +67,7 @@ const BottomTabs = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={CurrentHymns}
+        component={SettingsStack}
         options={{
           // @ts-ignore
           tabBarIcon: getTabBarIcon(

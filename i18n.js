@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as RNLocalize from 'react-native-localize';
+import { getItem } from './src/utils/localStorage';
 
-// Import translation files
 import en from './src/locales/en.json';
 import ar from './src/locales/ar.json';
 
@@ -11,18 +11,33 @@ const resources = {
   ar: { translation: ar },
 };
 
-const locales = RNLocalize.getLocales();
-const detectedLanguage = Array.isArray(locales) ? locales[0].languageTag : 'en';
+const languageDetector = {
+  type: 'languageDetector',
+  async: true,
+  detect: callback => {
+    const savedLang = getItem('language');
+
+    if (savedLang) {
+      callback(savedLang);
+      return;
+    }
+
+    const locales = RNLocalize.getLocales();
+    callback(locales[0]?.languageCode || 'en');
+  },
+  init: () => {},
+  cacheUserLanguage: () => {},
+};
 
 i18n
-  .use(initReactI18next) // passes i18n instance to react-i18next
+  .use(languageDetector)
+  .use(initReactI18next)
   .init({
-    compatibilityJSON: 'v3', // To make it work for Android devices
     resources,
-    lng: detectedLanguage, // default language to use
-    fallbackLng: 'en', // fallback language if the detected language is not available
+    fallbackLng: 'en',
+    compatibilityJSON: 'v3',
     interpolation: {
-      escapeValue: false, // react already safes from xss
+      escapeValue: false,
     },
   });
 
