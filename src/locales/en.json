@@ -4,5 +4,9 @@
   "privacyPolicy": "Privacy Policy",
   "aboutApplication": "About Application",
   "shareApplication": "Share Application",
-  "changeLanguageToArabic": "Change Language To Arabic"
+  "changeLanguageToArabic": "Change Language To Arabic",
+  "hymns": "Hymns",
+  "current": "Current",
+  "favorite": "Favorite",
+  "more": "More"
 }

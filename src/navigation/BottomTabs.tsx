@@ -6,6 +6,8 @@ import Favroites from '../screens/Favorites/Favroites';
 import { COLORS } from '../designSystem/designSystem';
 import { getTabBarIcon } from '../utils/getTabBarIcon';
 import SettingsStack from './SettingsStack';
+import { useTranslation } from 'react-i18next';
+import { LocalizationEnum } from '../locales';
 
 type BottomTabsNavigationType = {
   Hymns: undefined;
@@ -17,6 +19,8 @@ type BottomTabsNavigationType = {
 const Tab = createNativeBottomTabNavigator<BottomTabsNavigationType>();
 
 const BottomTabs = () => {
+  const { t } = useTranslation();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -36,7 +40,7 @@ const BottomTabs = () => {
             'list.bullet',
             require('../assets/bottomTabIcons/list.png'),
           ),
-          tabBarLabel: 'Hymns',
+          tabBarLabel: t(LocalizationEnum.hymns),
         }}
       />
       <Tab.Screen
@@ -49,7 +53,7 @@ const BottomTabs = () => {
             'play.rectangle.on.rectangle.circle',
             require('../assets/bottomTabIcons/current.png'),
           ),
-          tabBarLabel: 'Current Hymns',
+          tabBarLabel: t(LocalizationEnum.current),
         }}
       />
       <Tab.Screen
@@ -62,7 +66,7 @@ const BottomTabs = () => {
             'heart',
             require('../assets/bottomTabIcons/heart.png'),
           ),
-          tabBarLabel: 'Favorites',
+          tabBarLabel: t(LocalizationEnum.favorite),
         }}
       />
       <Tab.Screen
@@ -75,7 +79,7 @@ const BottomTabs = () => {
             'ellipsis',
             require('../assets/bottomTabIcons/settings.png'),
           ),
-          tabBarLabel: 'Settings',
+          tabBarLabel: t(LocalizationEnum.more),
         }}
       />
     </Tab.Navigator>

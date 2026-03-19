@@ -4,4 +4,8 @@ export enum LocalizationEnum {
   aboutApplication = 'aboutApplication',
   shareApplication = 'shareApplication',
   changeLanguageToArabic = 'changeLanguageToArabic',
+  hymns = 'hymns',
+  current = 'current',
+  favorite = 'favorite',
+  more = 'more',
 }
