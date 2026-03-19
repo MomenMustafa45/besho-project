@@ -4,6 +4,7 @@ import Hymns from '../screens/Hymns/Hymns';
 import CurrentHymns from '../screens/CurrentHymns/CurrentHymns';
 import Favroites from '../screens/Favorites/Favroites';
 import { COLORS } from '../designSystem/designSystem';
+import { getTabBarIcon } from '../utils/getTabBarIcon';
 
 type BottomTabsNavigationType = {
   Hymns: undefined;
@@ -18,31 +19,35 @@ const BottomTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
         tabBarActiveTintColor: COLORS.blue,
         tabBarInactiveTintColor: COLORS.gray,
+        tabBarLabelVisibilityMode: 'selected',
+        headerShown: false,
       }}
     >
       <Tab.Screen
         name="Hymns"
         component={Hymns}
         options={{
-          tabBarIcon: ({ focused }) => ({
-            name: focused ? 'list.triangle' : 'list.bullet',
-            type: 'sfSymbol',
-          }),
+          // @ts-ignore
+          tabBarIcon: getTabBarIcon(
+            'list.triangle',
+            'list.bullet',
+            require('../assets/bottomTabIcons/list.png'),
+          ),
+          tabBarLabel: 'Hymns',
         }}
       />
       <Tab.Screen
         name="CurrentHymns"
         component={CurrentHymns}
         options={{
-          tabBarIcon: ({ focused }) => ({
-            name: focused
-              ? 'play.rectangle.on.rectangle.circle.fill'
-              : 'play.rectangle.on.rectangle.circle',
-            type: 'sfSymbol',
-          }),
+          // @ts-ignore
+          tabBarIcon: getTabBarIcon(
+            'play.rectangle.on.rectangle.circle.fill',
+            'play.rectangle.on.rectangle.circle',
+            require('../assets/bottomTabIcons/current.png'),
+          ),
           tabBarLabel: 'Current Hymns',
         }}
       />
@@ -50,22 +55,26 @@ const BottomTabs = () => {
         name="Favorites"
         component={Favroites}
         options={{
-          tabBarIcon: ({ focused }) => ({
-            name: focused ? 'heart.fill' : 'heart',
-            type: 'sfSymbol',
-          }),
-          tabBarLabel: 'Current Hymns',
+          // @ts-ignore
+          tabBarIcon: getTabBarIcon(
+            'heart.fill',
+            'heart',
+            require('../assets/bottomTabIcons/heart.png'),
+          ),
+          tabBarLabel: 'Favorites',
         }}
       />
       <Tab.Screen
         name="Settings"
         component={CurrentHymns}
         options={{
-          tabBarIcon: ({ focused }) => ({
-            name: focused ? 'ellipsis.circle' : 'ellipsis',
-            type: 'sfSymbol',
-          }),
-          tabBarLabel: 'Current Hymns',
+          // @ts-ignore
+          tabBarIcon: getTabBarIcon(
+            'ellipsis.circle',
+            'ellipsis',
+            require('../assets/bottomTabIcons/settings.png'),
+          ),
+          tabBarLabel: 'Settings',
         }}
       />
     </Tab.Navigator>

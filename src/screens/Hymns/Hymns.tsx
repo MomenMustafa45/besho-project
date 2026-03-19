@@ -3,7 +3,9 @@ import React from 'react';
 
 const Hymns = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
+      <Text>Hymns</Text>
+      <Text>Hymns</Text>
       <Text>Hymns</Text>
     </View>
   );

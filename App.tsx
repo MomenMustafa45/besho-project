@@ -23,7 +23,7 @@ function App() {
       RNRestart.Restart();
     }
 
-    BootSplash.hide({ fade: true });
+    BootSplash.hide({ fade: false });
   }, [i18n.language]);
 
   return (
@@ -41,6 +41,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
 });
 
