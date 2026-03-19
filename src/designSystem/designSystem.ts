@@ -43,6 +43,8 @@ export const COLORS = {
   white: '#FFFFFF',
   text: '#15173D',
   black: '#000000',
+  blue: '#007AFF',
+  gray: '#888888',
 };
 
 export const fontSizes = {
