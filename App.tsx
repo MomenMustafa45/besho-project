@@ -7,6 +7,7 @@ import RNRestart from 'react-native-restart-newarch';
 import { I18nManager } from 'react-native';
 import MainNavigation from './src/navigation';
 import { NavigationContainer } from '@react-navigation/native';
+import BootSplash from 'react-native-bootsplash';
 
 function App() {
   const { i18n } = useTranslation();
@@ -21,6 +22,8 @@ function App() {
 
       RNRestart.Restart();
     }
+
+    BootSplash.hide({ fade: true });
   }, [i18n.language]);
 
   return (
