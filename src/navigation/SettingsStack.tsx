@@ -5,7 +5,7 @@ import Privacy from '../screens/Settings/screens/Privacy/Privacy';
 import About from '../screens/Settings/screens/About/About';
 
 export type SettingsStackNavigationType = {
-  Settings: undefined;
+  SettingsScreen: undefined;
   Privacy: undefined;
   About: undefined;
 };
@@ -19,7 +19,7 @@ const SettingsStack = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="SettingsScreen" component={Settings} />
       <Stack.Screen name="Privacy" component={Privacy} />
       <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
