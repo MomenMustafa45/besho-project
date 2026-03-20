@@ -4,7 +4,7 @@ import {
   scaleHeight,
   scaleSize,
   SPACING,
-} from '../../designSystem/designSystem';
+} from '../../../../designSystem/designSystem';
 
 export const styles = StyleSheet.create({
   screenParent: {

@@ -11,12 +11,19 @@ import AppIcon from '../../components/UI/AppIcon/AppIcon';
 import { ICON_SIZES } from '../../designSystem/designSystem';
 import { LocalizationEnum } from '../../locales';
 import AppTextInput from '../../components/UI/AppTextInput/AppTextInput';
+import useHymnsListHandlers from '../../hooks/useHymnsListHandlers';
+import HymnsHeader from './components/HymnsHeader/HymnsHeader';
 
 const Hymns = () => {
   const [isGrid, setIsGrid] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const { i18n, t } = useTranslation();
-  const isRTL = useMemo(() => i18n.language === 'ar', [i18n]);
+  const { t } = useTranslation();
+
+  const { isRTL, onClearPress, onSearchPress, showSearch } =
+    useHymnsListHandlers();
+
+  const onGridPress = () => {
+    setIsGrid(!isGrid);
+  };
 
   const renderItem = ({ item }: LegendListRenderItemProps<Hymn>) => {
     return <HymnItem item={item} isRTL={isRTL} isGrid={isGrid} />;
@@ -24,35 +31,13 @@ const Hymns = () => {
 
   return (
     <AppView style={styles.screenParent}>
-      {showSearch ? (
-        <AppTextInput
-          placeholder={t(LocalizationEnum.search)}
-          showClear
-          onClearPress={() => {
-            setShowSearch(false);
-          }}
-          containerStyle={styles.searchInput}
-        />
-      ) : (
-        <ScreenHeader>
-          <ScreenHeader.Title>{t(LocalizationEnum.hymns)}</ScreenHeader.Title>
+      <HymnsHeader
+        onClearPress={onClearPress}
+        onSearchPress={onSearchPress}
+        showSearch={showSearch}
+        onGridPress={onGridPress}
+      />
 
-          <ScreenHeader.Actions>
-            <ScreenHeader.Icon
-              icon={
-                <AppIcon type="Fontiso" name="search" size={ICON_SIZES.xl} />
-              }
-              onPress={() => setShowSearch(true)}
-            />
-            <ScreenHeader.Icon
-              icon={<AppIcon type="Entypo" name="grid" size={ICON_SIZES.xl} />}
-              onPress={() => {
-                setIsGrid(!isGrid);
-              }}
-            />
-          </ScreenHeader.Actions>
-        </ScreenHeader>
-      )}
       <LegendList
         contentContainerStyle={styles.listContentContainer}
         data={dummyHymns}
