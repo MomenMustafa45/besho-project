@@ -24,7 +24,7 @@ function App() {
       return;
     }
 
-    BootSplash.hide({ fade: false });
+    BootSplash.hide({ fade: true });
   }, [i18n.language]);
 
   return (

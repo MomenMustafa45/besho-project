@@ -1,5 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { fontSizes } from '../../../designSystem/constants';
+import {
+  fontSizes,
+  scaleHeight,
+  scaleSize,
+  SPACING,
+} from '../../../designSystem/designSystem';
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,12 +17,11 @@ export const styles = StyleSheet.create({
   },
 
   input: {
-    borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    fontSize: fontSizes.Body,
+    paddingHorizontal: scaleSize(SPACING.md),
+    paddingVertical: scaleHeight(SPACING.sm),
+    fontSize: fontSizes.normal,
     fontFamily: 'Cairo-Regular',
     backgroundColor: '#fff',
   },
@@ -26,5 +30,23 @@ export const styles = StyleSheet.create({
     marginTop: 4,
     fontSize: 12,
     color: 'red',
+  },
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingHorizontal: scaleSize(SPACING.md),
+  },
+
+  clearButton: {
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+  },
+
+  clearText: {
+    fontSize: fontSizes.normal,
+    color: '#888',
   },
 });

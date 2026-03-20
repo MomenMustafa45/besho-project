@@ -9,7 +9,7 @@ interface Props extends ViewProps {
   style?: StyleProp<ViewStyle>;
 }
 
-const AppView: React.FC<Props> = ({
+const AppView = ({
   children,
   padding = 0,
   margin = 0,
@@ -17,7 +17,7 @@ const AppView: React.FC<Props> = ({
   borderRadius = 0,
   style,
   ...rest
-}) => {
+}: Props) => {
   return (
     <View
       style={[

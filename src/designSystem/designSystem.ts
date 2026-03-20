@@ -23,6 +23,7 @@ export const SPACING = {
   xl: 20,
   xxl: 24,
   xxxl: 32,
+  '4xl': 54,
 };
 
 export const ICON_SIZES = {
