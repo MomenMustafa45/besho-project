@@ -20,9 +20,12 @@ const HymnItem = ({ item, isRTL, onPress, isGrid }: HymnItemProps) => {
   const itemAuthor = isRTL ? item.createdByAr : item.createdByEn;
   const itemImageHeight = isGrid ? scaleHeight(200) : scaleHeight(300);
   const itemDescStyles = isGrid ? styles.itemDescGrid : styles.itemDesc;
+  const itemContainerShadow = isGrid
+    ? styles.itemParentGrid
+    : styles.itemParent;
 
   return (
-    <AppPressable style={styles.itemParent} onPress={onPress}>
+    <AppPressable style={itemContainerShadow} onPress={onPress}>
       <AppView style={styles.itemImgContainer}>
         <Image
           style={[styles.itemImg, { height: itemImageHeight }]}

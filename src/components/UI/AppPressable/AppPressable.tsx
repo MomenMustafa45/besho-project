@@ -31,7 +31,6 @@ const AppPressable: React.FC<AppPressableProps> = ({
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
-      android_ripple={{ color: COLORS.gray }}
       style={({ pressed }) => [
         {
           opacity: pressed ? 0.7 : 1,

@@ -15,6 +15,11 @@ export const styles = StyleSheet.create({
     marginBottom: scaleHeight(SPACING.xxl),
     ...SHADOWS.large,
   },
+  itemParentGrid: {
+    position: 'relative',
+    width: '100%',
+    marginBottom: scaleHeight(SPACING.xxl),
+  },
   itemImgContainer: {
     width: '100%',
     borderRadius: scaleSize(SPACING.xl),
