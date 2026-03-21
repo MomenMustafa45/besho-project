@@ -10,7 +10,7 @@ import {
 export const styles = StyleSheet.create({
   screenParent: {
     flex: 1,
-    paddingHorizontal: scaleSize(SPACING.lg),
+    backgroundColor: COLORS.white,
   },
   container: {
     flex: 1,
@@ -49,8 +49,11 @@ export const styles = StyleSheet.create({
   albumArt: {
     width: '100%',
     height: 300,
-    backgroundColor: '#282828',
     borderRadius: scaleSize(SPACING.sm),
+  },
+  songImg: {
+    width: '100%',
+    height: '100%',
   },
   trackInfoContainer: {
     padding: scaleSize(SPACING.lg),

@@ -1,10 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import Video, {
-  OnLoadData,
-  OnProgressData,
-  VideoRef,
-} from 'react-native-video';
+import React from 'react';
+import { Image, Text, TouchableOpacity } from 'react-native';
+import Video from 'react-native-video';
 import Icon from '@react-native-vector-icons/fontawesome5';
 import Slider from '@react-native-community/slider';
 import { styles } from './styles';
@@ -12,107 +8,71 @@ import AppView from '../../components/UI/AppView/AppView';
 import { formatTime } from '../../utils/formatTime';
 import AppText from '../../components/UI/AppText/AppText';
 import { COLORS, ICON_SIZES } from '../../designSystem/designSystem';
+import usePlayerControllers from './hooks/usePlayerControllers';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Hymn } from '../../firebase/models/hymnModel';
+import AppIcon from '../../components/UI/AppIcon/AppIcon';
+import { useTranslation } from 'react-i18next';
+import { MainNavigationType } from '../../navigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import AppPressable from '../../components/UI/AppPressable/AppPressable';
+import PlayerHeader from './components/PlayerHeader/PlayerHeader';
+import { PlayerStackNavigationType } from '../../navigation/PlayerStack';
+
+type HymnsPlayerScreenNavigationProp =
+  NativeStackNavigationProp<PlayerStackNavigationType>;
 
 const Mp3PlayerScreen = () => {
-  const videoRef = useRef<VideoRef>(null);
-  const [paused, setPaused] = useState(true);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [playbackRate, setPlaybackRate] = useState(1.0);
+  const { params } = useRoute() as { params: { hymn: Hymn } };
+  const hymn = params.hymn;
+  const { pop } = useNavigation<HymnsPlayerScreenNavigationProp>();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
+  const songTitle = isRTL ? hymn.nameAr : hymn.nameEn;
+  const songAuthor = isRTL ? hymn.createdByAr : hymn.createdByEn;
 
-  const onProgress = (data: OnProgressData) => {
-    setCurrentTime(data.currentTime);
-  };
-
-  const onLoad = (data: OnLoadData) => {
-    setDuration(data.duration);
-    setIsLoading(false);
-  };
-
-  const onLoadStart = () => {
-    setIsLoading(true);
-  };
-
-  const onEnd = () => {
-    setPaused(true);
-    setCurrentTime(0);
-    if (videoRef.current) {
-      videoRef.current.seek(0);
-    }
-  };
-
-  const togglePlayPause = () => {
-    setPaused(!paused);
-  };
-
-  const handleSeek = (value: number) => {
-    setCurrentTime(value);
-    if (videoRef.current) {
-      videoRef.current.seek(value);
-    }
-  };
-
-  const handlePlaybackRate = () => {
-    const rates = [0.5, 1.0, 1.5, 2.0];
-    const currentIndex = rates.indexOf(playbackRate);
-    const nextIndex = (currentIndex + 1) % rates.length;
-    setPlaybackRate(rates[nextIndex]);
-  };
-
-  const skipForward = () => {
-    const newTime = Math.min(currentTime + 10, duration);
-    handleSeek(newTime);
-  };
-
-  const skipBackward = () => {
-    const newTime = Math.max(currentTime - 10, 0);
-    handleSeek(newTime);
-  };
+  const {
+    videoRef,
+    paused,
+    currentTime,
+    duration,
+    isLoading,
+    playbackRate,
+    togglePlayPause,
+    onProgress,
+    handlePlaybackRate,
+    skipForward,
+    skipBackward,
+    handleSeek,
+    onEnd,
+    onLoad,
+    onLoadStart,
+  } = usePlayerControllers();
 
   return (
     <AppView style={styles.screenParent}>
       {/* Header with Back Button */}
-      <AppView style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Icon name="arrow-left" size={ICON_SIZES.md} iconStyle={'solid'} />
-          <AppText style={styles.backButtonText}>Back</AppText>
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Now Playing</Text>
-      </AppView>
+      <PlayerHeader songTitle={songTitle} />
 
       {/* Main Content */}
       <AppView style={styles.content}>
         {/* Album Art Placeholder */}
         <AppView style={styles.albumArt}>
-          <Icon name="file-audio" size={ICON_SIZES.xxxxl} color="#666666" />
+          <Image style={styles.songImg} source={{ uri: hymn.image }} />
         </AppView>
 
         <AppView style={styles.trackInfoContainer}>
           {/* Track Info */}
           <AppView style={styles.trackInfo}>
-            <Text style={styles.trackTitle}>Song Title</Text>
-            <Icon name="heart" size={ICON_SIZES.lg} iconStyle="solid" />
+            <AppText style={styles.trackTitle}>{songTitle}</AppText>
+            <AppPressable>
+              <AppIcon
+                name={'heart-outlined'}
+                type="Entypo"
+                size={ICON_SIZES.lg}
+              />
+            </AppPressable>
           </AppView>
-
-          <Video
-            ref={videoRef}
-            source={{
-              uri: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-            }}
-            style={styles.hiddenVideo}
-            paused={paused}
-            onProgress={onProgress}
-            onLoad={onLoad}
-            onLoadStart={onLoadStart}
-            onEnd={onEnd}
-            rate={playbackRate}
-            playInBackground={true}
-            playWhenInactive={true}
-            onError={e => console.log('Audio Error:', e)}
-            ignoreSilentSwitch="ignore"
-            progressUpdateInterval={1500.5}
-          />
 
           {/* Progress Bar and Times */}
           <AppView style={styles.progressContainer}>
@@ -168,6 +128,25 @@ const Mp3PlayerScreen = () => {
             <Icon name="headset" size={16} color="#888888" iconStyle="solid" />
             <Text style={styles.listeningText}>Listening Count: 662</Text>
           </AppView>
+
+          <Video
+            ref={videoRef}
+            source={{
+              uri: params.hymn.link,
+            }}
+            style={styles.hiddenVideo}
+            paused={paused}
+            onProgress={onProgress}
+            onLoad={onLoad}
+            onLoadStart={onLoadStart}
+            onEnd={onEnd}
+            rate={playbackRate}
+            playInBackground={true}
+            playWhenInactive={true}
+            onError={e => console.log('Audio Error:', e)}
+            ignoreSilentSwitch="ignore"
+            progressUpdateInterval={1500.5}
+          />
         </AppView>
       </AppView>
       {/* Spacer */}

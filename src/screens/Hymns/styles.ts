@@ -9,6 +9,7 @@ import {
 export const styles = StyleSheet.create({
   screenParent: {
     backgroundColor: COLORS.white,
+    flex: 1,
   },
   listContentContainer: {
     paddingTop: scaleSize(SPACING.xl),

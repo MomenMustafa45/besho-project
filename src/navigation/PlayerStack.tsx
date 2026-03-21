@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Mp3PlayerScreen from '../screens/PlayerScreen/PlayerScreen';
 import SongsListModal from '../screens/PlayerScreen/screens/SongsListModal';
 
-type PlayerStackNavigationType = {
+export type PlayerStackNavigationType = {
   Player: undefined;
   SongsList: undefined;
 };
@@ -14,7 +14,7 @@ const PlayerStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        statusBarHidden: true,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Player" component={Mp3PlayerScreen} />
