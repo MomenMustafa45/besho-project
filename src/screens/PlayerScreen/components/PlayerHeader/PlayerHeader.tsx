@@ -5,20 +5,19 @@ import { ICON_SIZES } from '../../../../designSystem/designSystem';
 import { MainNavigationType } from '../../../../navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
-type PlayerHeaderProps = {
-  songTitle: string;
-};
+import { useTranslation } from 'react-i18next';
+import { LocalizationEnum } from '../../../../locales';
 
 type HymnsPlayerScreenNavigationProp =
   NativeStackNavigationProp<MainNavigationType>;
 
-const PlayerHeader = ({ songTitle }: PlayerHeaderProps) => {
+const PlayerHeader = () => {
+  const { t } = useTranslation();
   const { pop } = useNavigation<HymnsPlayerScreenNavigationProp>();
 
   return (
     <ScreenHeader>
-      <ScreenHeader.Title>{songTitle}</ScreenHeader.Title>
+      <ScreenHeader.Title>{t(LocalizationEnum.back)}</ScreenHeader.Title>
 
       <ScreenHeader.Actions>
         <ScreenHeader.Icon

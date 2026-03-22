@@ -17,6 +17,7 @@ type AppIconProps = {
   size?: number;
   color?: string;
   style?: ViewStyle | TextStyle;
+  iconStyle?: 'solid' | 'regular' | 'brand' | undefined;
 };
 
 const AppIcon = ({
@@ -25,6 +26,7 @@ const AppIcon = ({
   size = ICON_SIZES.lg,
   color = 'black',
   style,
+  iconStyle,
 }: AppIconProps) => {
   const IconComponent = iconTypes[type];
 
@@ -33,7 +35,15 @@ const AppIcon = ({
     return null;
   }
 
-  return <IconComponent name={name} size={size} color={color} style={style} />;
+  return (
+    <IconComponent
+      name={name}
+      size={size}
+      color={color}
+      style={style}
+      iconStyle={iconStyle}
+    />
+  );
 };
 
 export default AppIcon;

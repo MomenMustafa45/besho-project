@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: scaleSize(SPACING.lg),
-    paddingBottom: scaleHeight(SPACING.sm),
+    paddingVertical: scaleHeight(SPACING.sm),
   },
   title: {
     fontSize: fontSizes.large,

@@ -9,4 +9,5 @@ export enum LocalizationEnum {
   favorite = 'favorite',
   more = 'more',
   search = 'search',
+  back = 'back',
 }
