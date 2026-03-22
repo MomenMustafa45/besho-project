@@ -21,6 +21,8 @@ export interface Hymn {
 
   counter: number;
   order: number;
+
+  isFavorite?: boolean;
 }
 
 export const mapHymn = (

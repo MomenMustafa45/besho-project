@@ -2,9 +2,10 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Mp3PlayerScreen from '../screens/PlayerScreen/PlayerScreen';
 import SongsListModal from '../screens/PlayerScreen/screens/SongsListModal/SongsListModal';
+import { Hymn } from '../firebase/models/hymnModel';
 
 export type PlayerStackNavigationType = {
-  Player: undefined;
+  Player: { hymn: Hymn };
   SongsList: undefined;
 };
 
@@ -23,7 +24,7 @@ const PlayerStack = () => {
         name="SongsList"
         component={SongsListModal}
         options={{
-          presentation: 'modal',
+          presentation: 'transparentModal',
           animation: 'slide_from_bottom',
         }}
       />

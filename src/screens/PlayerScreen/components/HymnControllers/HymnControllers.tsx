@@ -60,6 +60,7 @@ const HymnControllers = ({
             name={isFavorite ? 'heart' : 'heart-outlined'}
             type="Entypo"
             size={ICON_SIZES.lg}
+            color="red"
           />
         </AppPressable>
       </AppView>

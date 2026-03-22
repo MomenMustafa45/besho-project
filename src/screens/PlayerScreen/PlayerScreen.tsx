@@ -20,10 +20,15 @@ type HymnsPlayerScreenNavigationProp =
 
 const Mp3PlayerScreen = () => {
   const { params } = useRoute() as { params: { hymn: Hymn } };
+  console.log('🚀 ~ Mp3PlayerScreen ~ params:', params);
   const hymn = params.hymn;
-  const { pop } = useNavigation<HymnsPlayerScreenNavigationProp>();
+  const { navigate } = useNavigation<HymnsPlayerScreenNavigationProp>();
   const { isRTL } = useLangChecker();
   const songTitle = isRTL ? hymn.nameAr : hymn.nameEn;
+
+  const onListPressHandler = () => {
+    navigate('SongsList');
+  };
 
   const {
     videoRef,
@@ -95,7 +100,7 @@ const Mp3PlayerScreen = () => {
         </AppView>
         {/* Spacer */}
         <AppView style={styles.spacer} />
-        <AppPressable style={styles.listContainer}>
+        <AppPressable onPress={onListPressHandler} style={styles.listContainer}>
           <AppView style={styles.listBox}>
             <AppIcon
               name="play-list"
