@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   trackTitle: {
     fontSize: 24,
     fontWeight: 'bold',
+    flex: 1,
   },
 
   trackArtist: {

@@ -23,7 +23,6 @@ const useHymnsListHandlers = () => {
   }, []);
 
   const onItemPressHandler = (item: Hymn) => {
-    console.log('🚀 ~ onItemPressHandler ~ item:', item);
     navigate('HymnPlayer', {
       screen: 'Player',
       params: { hymn: item },

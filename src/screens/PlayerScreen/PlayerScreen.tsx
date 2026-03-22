@@ -20,7 +20,6 @@ type HymnsPlayerScreenNavigationProp =
 
 const Mp3PlayerScreen = () => {
   const { params } = useRoute() as { params: { hymn: Hymn } };
-  console.log('🚀 ~ Mp3PlayerScreen ~ params:', params);
   const hymn = params.hymn;
   const { navigate } = useNavigation<HymnsPlayerScreenNavigationProp>();
   const { isRTL } = useLangChecker();

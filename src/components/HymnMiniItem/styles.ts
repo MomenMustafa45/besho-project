@@ -11,7 +11,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: scaleSize(SPACING.md),
+    paddingVertical: scaleSize(SPACING.lg),
+    borderWidth: 0,
+    borderBottomWidth: 1,
+    borderColor: COLORS.secondary,
+    borderStyle: 'dashed',
   },
   textContainer: {
     flexDirection: 'row',
@@ -24,6 +28,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.text,
     flex: 1,
+    textAlign: 'left',
   },
   index: {
     color: COLORS.primary,
