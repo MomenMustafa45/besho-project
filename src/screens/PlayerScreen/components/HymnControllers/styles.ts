@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     flex: 1,
+    textAlign: 'left',
   },
 
   trackArtist: {
