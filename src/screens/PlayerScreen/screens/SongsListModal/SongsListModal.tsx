@@ -3,7 +3,7 @@ import React from 'react';
 import { useHymns } from '../../../../firebase/hooks/useHymns';
 
 const SongsListModal = () => {
-  const { hymns, loading } = useHymns();
+  const { data: hymns, isLoading } = useHymns();
 
   return (
     <View>

@@ -7,6 +7,12 @@ import { COLORS, ICON_SIZES } from '../../../../designSystem/designSystem';
 import Slider from '@react-native-community/slider';
 import { formatTime } from '../../../../utils/formatTime';
 import AppIcon from '../../../../components/UI/AppIcon/AppIcon';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../hooks/useStoreHooks';
+import { toggleFavorite } from '../../../../store/slices/favoritesSlice';
+import useLangChecker from '../../../../hooks/useLangChecker';
 
 type HymnControllersProps = {
   currentTime: number;
@@ -20,6 +26,7 @@ type HymnControllersProps = {
   skipBackward: () => void;
   handleSeek: (value: number) => void;
   songTitle: string;
+  songId: string;
 };
 
 const HymnControllers = ({
@@ -34,13 +41,26 @@ const HymnControllers = ({
   skipBackward,
   handleSeek,
   songTitle,
+  songId,
 }: HymnControllersProps) => {
+  const favorites = useAppSelector(state => state.favorites.favorites);
+  const dispatch = useAppDispatch();
+  const isFavorite = favorites.includes(songId);
+  const { isRTL } = useLangChecker();
+  const toggleFavoriteHandler = () => {
+    dispatch(toggleFavorite(songId));
+  };
+
   return (
     <>
       <AppView style={styles.trackInfo}>
         <AppText style={styles.trackTitle}>{songTitle}</AppText>
-        <AppPressable>
-          <AppIcon name={'heart-outlined'} type="Entypo" size={ICON_SIZES.lg} />
+        <AppPressable onPress={toggleFavoriteHandler}>
+          <AppIcon
+            name={isFavorite ? 'heart' : 'heart-outlined'}
+            type="Entypo"
+            size={ICON_SIZES.lg}
+          />
         </AppPressable>
       </AppView>
 
@@ -64,7 +84,13 @@ const HymnControllers = ({
       </AppView>
 
       {/* Playback Controls */}
-      <AppView style={styles.controlsContainer}>
+      <AppView
+        style={[
+          styles.controlsContainer,
+          // eslint-disable-next-line react-native/no-inline-styles
+          { flexDirection: isRTL ? 'row-reverse' : 'row' },
+        ]}
+      >
         <AppPressable onPress={handlePlaybackRate}>
           <AppView style={styles.speedButton}>
             <AppText style={styles.speedText}>{playbackRate}x</AppText>
@@ -89,6 +115,7 @@ const HymnControllers = ({
             size={ICON_SIZES.xxl}
             type="FontAwesome5"
             iconStyle="solid"
+            isLoading={isLoading}
           />
         </AppPressable>
 

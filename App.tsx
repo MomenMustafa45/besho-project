@@ -8,6 +8,11 @@ import { I18nManager } from 'react-native';
 import MainNavigation from './src/navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import BootSplash from 'react-native-bootsplash';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
+
+const queryClient = new QueryClient();
 
 function App() {
   const { i18n } = useTranslation();
@@ -32,7 +37,11 @@ function App() {
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <NavigationContainer>
-          <MainNavigation />
+          <QueryClientProvider client={queryClient}>
+            <Provider store={store}>
+              <MainNavigation />
+            </Provider>
+          </QueryClientProvider>
         </NavigationContainer>
       </SafeAreaView>
     </SafeAreaProvider>

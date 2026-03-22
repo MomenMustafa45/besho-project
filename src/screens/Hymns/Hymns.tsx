@@ -11,7 +11,7 @@ import AppLoading from '../../components/UI/AppLoading/AppLoading';
 
 const Hymns = () => {
   const [isGrid, setIsGrid] = useState(false);
-  const { hymns, loading } = useHymns();
+  const { data: hymns, isLoading } = useHymns();
 
   const { isRTL, onClearPress, onSearchPress, showSearch, onItemPressHandler } =
     useHymnsListHandlers();
@@ -39,12 +39,12 @@ const Hymns = () => {
         showSearch={showSearch}
         onGridPress={onGridPress}
       />
-      {loading ? (
+      {isLoading ? (
         <AppLoading />
       ) : (
         <LegendList
           contentContainerStyle={styles.listContentContainer}
-          data={hymns}
+          data={hymns || []}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}

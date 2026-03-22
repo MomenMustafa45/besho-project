@@ -7,13 +7,13 @@ import { COLORS, ICON_SIZES } from '../../designSystem/designSystem';
 import usePlayerControllers from './hooks/usePlayerControllers';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Hymn } from '../../firebase/models/hymnModel';
-import { useTranslation } from 'react-i18next';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import AppPressable from '../../components/UI/AppPressable/AppPressable';
 import PlayerHeader from './components/PlayerHeader/PlayerHeader';
 import { PlayerStackNavigationType } from '../../navigation/PlayerStack';
 import HymnControllers from './components/HymnControllers/HymnControllers';
 import AppIcon from '../../components/UI/AppIcon/AppIcon';
+import useLangChecker from '../../hooks/useLangChecker';
 
 type HymnsPlayerScreenNavigationProp =
   NativeStackNavigationProp<PlayerStackNavigationType>;
@@ -22,8 +22,7 @@ const Mp3PlayerScreen = () => {
   const { params } = useRoute() as { params: { hymn: Hymn } };
   const hymn = params.hymn;
   const { pop } = useNavigation<HymnsPlayerScreenNavigationProp>();
-  const { i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar';
+  const { isRTL } = useLangChecker();
   const songTitle = isRTL ? hymn.nameAr : hymn.nameEn;
 
   const {
@@ -60,6 +59,7 @@ const Mp3PlayerScreen = () => {
           <AppView style={styles.trackInfoContainer}>
             {/* Track Info */}
             <HymnControllers
+              songId={hymn.id}
               songTitle={songTitle}
               currentTime={currentTime}
               duration={duration}

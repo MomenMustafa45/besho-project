@@ -1,8 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import BottomTabs from './BottomTabs';
 import PlayerStack from './PlayerStack';
 import { Hymn } from '../firebase/models/hymnModel';
+import { useAppDispatch } from '../hooks/useStoreHooks';
+import { initFavorites } from '../store/slices/favoritesSlice';
 
 export type MainNavigationType = {
   BottomTabs: undefined;
@@ -17,6 +19,12 @@ export type MainNavigationType = {
 const Stack = createNativeStackNavigator<MainNavigationType>();
 
 const MainNavigation = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(initFavorites());
+  }, [dispatch]);
+
   return (
     <Stack.Navigator
       screenOptions={{

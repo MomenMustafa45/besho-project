@@ -31,7 +31,6 @@ export const styles = StyleSheet.create({
     height: 40,
   },
   controlsContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },

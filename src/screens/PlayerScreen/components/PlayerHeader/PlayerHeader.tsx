@@ -5,29 +5,35 @@ import { ICON_SIZES } from '../../../../designSystem/designSystem';
 import { MainNavigationType } from '../../../../navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
 import { LocalizationEnum } from '../../../../locales';
+import AppPressable from '../../../../components/UI/AppPressable/AppPressable';
+import { styles } from './styles';
+import useLangChecker from '../../../../hooks/useLangChecker';
 
 type HymnsPlayerScreenNavigationProp =
   NativeStackNavigationProp<MainNavigationType>;
 
 const PlayerHeader = () => {
-  const { t } = useTranslation();
+  const { isRTL, t } = useLangChecker();
   const { pop } = useNavigation<HymnsPlayerScreenNavigationProp>();
 
   return (
     <ScreenHeader>
-      <ScreenHeader.Title>{t(LocalizationEnum.back)}</ScreenHeader.Title>
-
+      <ScreenHeader.Title>{''}</ScreenHeader.Title>
       <ScreenHeader.Actions>
-        <ScreenHeader.Icon
-          icon={
-            <AppIcon type="Fontiso" name="arrow-left" size={ICON_SIZES.lg} />
-          }
+        <AppPressable
           onPress={() => {
             pop();
           }}
-        />
+          style={styles.backButton}
+        >
+          <ScreenHeader.Title>{t(LocalizationEnum.back)}</ScreenHeader.Title>
+          <AppIcon
+            type="Fontiso"
+            name={isRTL ? 'arrow-left' : 'arrow-right'}
+            size={ICON_SIZES.lg}
+          />
+        </AppPressable>
       </ScreenHeader.Actions>
     </ScreenHeader>
   );

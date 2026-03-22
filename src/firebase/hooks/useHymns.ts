@@ -1,61 +1,28 @@
-import { useEffect, useState } from 'react';
 import {
   getAllHymns,
   getCurrentHymns,
   getHymnById,
 } from '../services/hymnService';
-import { Hymn } from '../models/hymnModel';
+import { useQuery } from '@tanstack/react-query';
 
 export const useHymns = () => {
-  const [hymns, setHymns] = useState<Hymn[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    loadHymns();
-  }, []);
-
-  const loadHymns = async () => {
-    const data = await getAllHymns();
-    setHymns(data);
-    setLoading(false);
-  };
-
-  return { hymns, loading };
+  return useQuery({
+    queryKey: ['hymns'],
+    queryFn: getAllHymns,
+  });
 };
 
 export const useCurrentHymns = () => {
-  const [hymns, setHymns] = useState<Hymn[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    loadCurrent();
-  }, []);
-
-  const loadCurrent = async () => {
-    const data = await getCurrentHymns();
-    setHymns(data);
-    setLoading(false);
-  };
-
-  return { hymns, loading };
+  return useQuery({
+    queryKey: ['currentHymns'],
+    queryFn: getCurrentHymns,
+  });
 };
 
 export const useHymn = (id: string) => {
-  const [hymn, setHymn] = useState<Hymn | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  const loadHymn = async () => {
-    const data = await getHymnById(id);
-    setHymn(data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    if (!id) return;
-
-    loadHymn();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
-  return { hymn, loading };
+  return useQuery({
+    queryKey: ['hymn', id],
+    queryFn: () => getHymnById(id),
+    enabled: !!id,
+  });
 };

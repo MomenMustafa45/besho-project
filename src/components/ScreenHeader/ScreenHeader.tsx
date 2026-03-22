@@ -32,7 +32,7 @@ ScreenHeader.Actions = ({ children }: ActionsProps) => {
 
 type IconProps = {
   icon: React.ReactNode;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
 // Icon (generic)

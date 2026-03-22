@@ -1,9 +1,9 @@
 import React from 'react';
-import { ViewStyle, TextStyle } from 'react-native';
+import { ViewStyle, TextStyle, ActivityIndicator } from 'react-native';
 import FontAwesome5 from '@react-native-vector-icons/fontawesome5';
 import Fontiso from '@react-native-vector-icons/fontisto';
 import Entypo from '@react-native-vector-icons/entypo';
-import { ICON_SIZES } from '../../../designSystem/designSystem';
+import { COLORS, ICON_SIZES } from '../../../designSystem/designSystem';
 
 export const iconTypes = {
   Entypo,
@@ -18,6 +18,7 @@ type AppIconProps = {
   color?: string;
   style?: ViewStyle | TextStyle;
   iconStyle?: 'solid' | 'regular' | 'brand' | undefined;
+  isLoading?: boolean;
 };
 
 const AppIcon = ({
@@ -27,6 +28,7 @@ const AppIcon = ({
   color = 'black',
   style,
   iconStyle,
+  isLoading,
 }: AppIconProps) => {
   const IconComponent = iconTypes[type];
 
@@ -34,6 +36,9 @@ const AppIcon = ({
     console.warn(`Icon type "${type}" is not supported.`);
     return null;
   }
+
+  if (isLoading)
+    return <ActivityIndicator color={COLORS.secondary} size={'small'} />;
 
   return (
     <IconComponent
