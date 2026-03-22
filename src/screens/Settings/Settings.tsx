@@ -12,6 +12,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SettingsStackNavigationType } from '../../navigation/SettingsStack';
 import { styles } from './styles';
 import logo from '../../../logo.png';
+import RNRestart from 'react-native-restart-newarch';
+
 type SettingsNavigationType =
   NativeStackNavigationProp<SettingsStackNavigationType>;
 
@@ -22,6 +24,7 @@ const Settings = () => {
 
   const changeLanguageHandler = () => {
     changeLanguage(isRTL ? 'en' : 'ar');
+    RNRestart.Restart();
   };
 
   const onShareApp = async () => {

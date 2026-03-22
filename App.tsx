@@ -3,7 +3,6 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import './i18n';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import RNRestart from 'react-native-restart-newarch';
 import { I18nManager } from 'react-native';
 import MainNavigation from './src/navigation';
 import { NavigationContainer } from '@react-navigation/native';
@@ -24,13 +23,11 @@ function App() {
     if (I18nManager.isRTL !== isRTL) {
       I18nManager.allowRTL(isRTL);
       I18nManager.forceRTL(isRTL);
-
-      RNRestart.Restart();
-      return;
     }
 
     BootSplash.hide({ fade: true });
-  }, [i18n.language]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <SafeAreaProvider>
