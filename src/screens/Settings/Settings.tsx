@@ -30,7 +30,12 @@ const Settings = () => {
   const onShareApp = async () => {
     try {
       await Share.share({
-        message: 'Check out this app: https://yourapp.link',
+        message: `Check out this app:
+iOS (App Store):
+https://your-ios-link.com
+
+Android (Google Play):
+https://your-android-link.com`,
         title: 'Share App',
       });
     } catch (error) {
