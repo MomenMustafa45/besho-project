@@ -75,6 +75,7 @@ const Mp3PlayerScreen = () => {
               skipBackward={skipBackward}
               handleSeek={handleSeek}
               isLoading={isLoading}
+              listenerCount={hymn.counter}
             />
 
             <Video

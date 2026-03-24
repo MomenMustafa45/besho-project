@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomTabs from './BottomTabs';
 import PlayerStack from './PlayerStack';
 import { Hymn } from '../firebase/models/hymnModel';
 import { useAppDispatch } from '../hooks/useStoreHooks';
 import { initFavorites } from '../store/slices/favoritesSlice';
+import SplashScreen from '../screens/SplashScreen/SplashScreen';
 
 export type MainNavigationType = {
   BottomTabs: undefined;
@@ -20,10 +21,19 @@ const Stack = createNativeStackNavigator<MainNavigationType>();
 
 const MainNavigation = () => {
   const dispatch = useAppDispatch();
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     dispatch(initFavorites());
   }, [dispatch]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 3000);
+  }, []);
+
+  if (showSplash) return <SplashScreen />;
 
   return (
     <Stack.Navigator

@@ -10,5 +10,6 @@
   "favorite": "Favorite",
   "more": "More",
   "search": "Search",
-  "back": "Back"
+  "back": "Back",
+  "listEmpty": "No items available"
 }

@@ -3,7 +3,7 @@ import { OnLoadData, OnProgressData, VideoRef } from 'react-native-video';
 
 const usePlayerControllers = () => {
   const videoRef = useRef<VideoRef>(null);
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(true);

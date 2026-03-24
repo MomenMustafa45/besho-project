@@ -9,10 +9,17 @@ import CurrentHymnsHeader from './components/CurrentHymnsHeader/CurrentHymnsHead
 import useHymnsListHandlers from '../../hooks/useHymnsListHandlers';
 
 const CurrentHymns = () => {
-  const { showSearch, onSearchPress, onClearPress, isRTL } =
+  const { showSearch, onSearchPress, onClearPress, isRTL, onItemPressHandler } =
     useHymnsListHandlers();
   const renderItem = ({ item }: LegendListRenderItemProps<Hymn>) => {
-    return <HymnItem item={item} isRTL={isRTL} isGrid={true} />;
+    return (
+      <HymnItem
+        item={item}
+        isRTL={isRTL}
+        isGrid={true}
+        onPress={() => onItemPressHandler(item)}
+      />
+    );
   };
 
   return (

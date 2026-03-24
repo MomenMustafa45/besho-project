@@ -10,4 +10,5 @@ export enum LocalizationEnum {
   more = 'more',
   search = 'search',
   back = 'back',
+  listEmpty = 'listEmpty',
 }

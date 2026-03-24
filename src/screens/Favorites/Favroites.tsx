@@ -13,6 +13,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from './styles';
 import { ScreenHeader } from '../../components/ScreenHeader/ScreenHeader';
 import { LocalizationEnum } from '../../locales';
+import AppEmptyList from '../../components/UI/AppEmptyList/AppEmptyList';
 
 type HymnsPlayerScreenNavigationProp =
   NativeStackNavigationProp<MainNavigationType>;
@@ -63,6 +64,7 @@ const Favroites = () => {
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContentContainer}
+        ListEmptyComponent={AppEmptyList}
       />
     </AppView>
   );

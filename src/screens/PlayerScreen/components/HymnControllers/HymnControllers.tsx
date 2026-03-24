@@ -27,6 +27,7 @@ type HymnControllersProps = {
   handleSeek: (value: number) => void;
   songTitle: string;
   songId: string;
+  listenerCount: number;
 };
 
 const HymnControllers = ({
@@ -42,6 +43,7 @@ const HymnControllers = ({
   handleSeek,
   songTitle,
   songId,
+  listenerCount,
 }: HymnControllersProps) => {
   const favorites = useAppSelector(state => state.favorites.favorites);
   const dispatch = useAppDispatch();
@@ -146,7 +148,9 @@ const HymnControllers = ({
           type="FontAwesome5"
           iconStyle="solid"
         />
-        <AppText style={styles.listeningText}>Listening Count: 662</AppText>
+        <AppText style={styles.listeningText}>
+          Listening Count: {listenerCount}
+        </AppText>
       </AppView>
     </>
   );
