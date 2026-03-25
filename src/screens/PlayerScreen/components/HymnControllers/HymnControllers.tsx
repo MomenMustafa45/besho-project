@@ -28,6 +28,8 @@ type HymnControllersProps = {
   songTitle: string;
   songId: string;
   listenerCount: number;
+  isMuted: boolean;
+  toggleMute: () => void;
 };
 
 const HymnControllers = ({
@@ -44,6 +46,8 @@ const HymnControllers = ({
   songTitle,
   songId,
   listenerCount,
+  isMuted,
+  toggleMute,
 }: HymnControllersProps) => {
   const favorites = useAppSelector(state => state.favorites.favorites);
   const dispatch = useAppDispatch();
@@ -131,9 +135,9 @@ const HymnControllers = ({
           />
         </AppPressable>
 
-        <AppPressable>
+        <AppPressable onPress={toggleMute}>
           <AppIcon
-            name="volume-mute"
+            name={isMuted ? 'volume-mute' : 'volume-up'}
             size={ICON_SIZES.xl}
             type="FontAwesome5"
             iconStyle="solid"

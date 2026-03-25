@@ -45,6 +45,8 @@ const Mp3PlayerScreen = () => {
     onEnd,
     onLoad,
     onLoadStart,
+    isMuted,
+    toggleMute,
   } = usePlayerControllers();
 
   return (
@@ -76,6 +78,8 @@ const Mp3PlayerScreen = () => {
               handleSeek={handleSeek}
               isLoading={isLoading}
               listenerCount={hymn.counter}
+              isMuted={isMuted}
+              toggleMute={toggleMute}
             />
 
             <Video
@@ -95,6 +99,7 @@ const Mp3PlayerScreen = () => {
               onError={e => console.log('Audio Error:', e)}
               ignoreSilentSwitch="ignore"
               progressUpdateInterval={1500.5}
+              muted={isMuted}
             />
           </AppView>
         </AppView>
