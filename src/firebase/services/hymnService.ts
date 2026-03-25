@@ -23,7 +23,7 @@ export const getAllHymns = async (): Promise<Hymn[]> => {
 };
 
 export const getCurrentHymns = async (): Promise<Hymn[]> => {
-  const q = query(hymnsRef, where('IsCurrent', '==', true), orderBy('order'));
+  const q = query(hymnsRef, where('isCurrent', '==', true), orderBy('order'));
 
   const snapshot = await getDocs(q);
 

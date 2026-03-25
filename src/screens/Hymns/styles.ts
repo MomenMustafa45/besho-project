@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     paddingTop: scaleSize(SPACING.xl),
     paddingBottom: scaleHeight(150),
     paddingHorizontal: scaleSize(SPACING.xxl),
+    flex: 1,
   },
   row: {
     gap: scaleSize(SPACING.lg),

@@ -8,13 +8,32 @@ import useHymnsListHandlers from '../../hooks/useHymnsListHandlers';
 import HymnsHeader from './components/HymnsHeader/HymnsHeader';
 import { useHymns } from '../../firebase/hooks/useHymns';
 import AppLoading from '../../components/UI/AppLoading/AppLoading';
+import AppEmptyList from '../../components/UI/AppEmptyList/AppEmptyList';
 
 const Hymns = () => {
   const [isGrid, setIsGrid] = useState(false);
   const { data: hymns, isLoading } = useHymns();
 
-  const { isRTL, onClearPress, onSearchPress, showSearch, onItemPressHandler } =
-    useHymnsListHandlers();
+  const {
+    isRTL,
+    onClearPress,
+    onSearchPress,
+    showSearch,
+    onItemPressHandler,
+    debouncedQuery,
+    onChangeSearchText,
+  } = useHymnsListHandlers();
+
+  const query = debouncedQuery.toLowerCase();
+  console.log('🚀 ~ Hymns ~ query:', query);
+
+  const filteredHymns = !debouncedQuery
+    ? hymns || []
+    : (hymns || []).filter(
+        hymn =>
+          hymn.nameAr?.toLowerCase().includes(query) ||
+          hymn.nameEn?.toLowerCase().includes(query),
+      );
 
   const onGridPress = () => {
     setIsGrid(!isGrid);
@@ -38,19 +57,21 @@ const Hymns = () => {
         onSearchPress={onSearchPress}
         showSearch={showSearch}
         onGridPress={onGridPress}
+        onChangeText={onChangeSearchText}
       />
       {isLoading ? (
         <AppLoading />
       ) : (
         <LegendList
           contentContainerStyle={styles.listContentContainer}
-          data={hymns || []}
+          data={filteredHymns}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
           numColumns={isGrid ? 2 : 1}
           columnWrapperStyle={styles.row}
           key={`${isGrid}`}
+          ListEmptyComponent={AppEmptyList}
         />
       )}
     </AppView>

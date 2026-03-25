@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MainNavigationType } from '../navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -10,9 +10,20 @@ type HymnsListScreenNavigationProp =
 
 const useHymnsListHandlers = () => {
   const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+
   const { i18n } = useTranslation();
   const isRTL = useMemo(() => i18n.language === 'ar', [i18n]);
   const { navigate } = useNavigation<HymnsListScreenNavigationProp>();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
   const onSearchPress = useCallback(() => {
     setShowSearch(true);
@@ -20,6 +31,12 @@ const useHymnsListHandlers = () => {
 
   const onClearPress = useCallback(() => {
     setShowSearch(false);
+    setSearchQuery('');
+    setDebouncedQuery('');
+  }, []);
+
+  const onChangeSearchText = useCallback((text: string) => {
+    setSearchQuery(text);
   }, []);
 
   const onItemPressHandler = (item: Hymn) => {
@@ -33,8 +50,12 @@ const useHymnsListHandlers = () => {
     showSearch,
     onSearchPress,
     onClearPress,
+    onChangeSearchText,
     isRTL,
     onItemPressHandler,
+    searchQuery,
+    setSearchQuery,
+    debouncedQuery,
   };
 };
 

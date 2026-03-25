@@ -61,7 +61,7 @@ const About = () => {
 
           <AppPressable
             onPress={() => {
-              Linking.openURL('www.coptic.com');
+              Linking.openURL('https://www.coptic.com');
             }}
           >
             <AppText style={styles.link}>www.coptic.com</AppText>

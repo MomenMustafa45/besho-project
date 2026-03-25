@@ -9,11 +9,13 @@ import {
 export const styles = StyleSheet.create({
   screenParent: {
     backgroundColor: COLORS.white,
+    flex: 1,
   },
   listContentContainer: {
     paddingTop: scaleSize(SPACING.xl),
     paddingBottom: scaleHeight(150),
     paddingHorizontal: scaleSize(SPACING.xxl),
+    flex: 1,
   },
   row: {
     gap: scaleSize(SPACING.lg),

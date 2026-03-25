@@ -12,6 +12,7 @@ type HymnsHeaderProps = {
   onClearPress: () => void;
   onSearchPress: () => void;
   onGridPress: () => void;
+  onChangeText?: ((text: string) => void) | undefined;
 };
 
 const HymnsHeader = ({
@@ -19,6 +20,7 @@ const HymnsHeader = ({
   onSearchPress,
   showSearch,
   onGridPress,
+  onChangeText,
 }: HymnsHeaderProps) => {
   const { t } = useTranslation();
 
@@ -30,6 +32,7 @@ const HymnsHeader = ({
           showClear
           onClearPress={onClearPress}
           containerStyle={styles.searchInput}
+          onChangeText={onChangeText}
         />
       ) : (
         <ScreenHeader>

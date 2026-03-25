@@ -11,12 +11,14 @@ type CurrentHymnsHeaderProps = {
   showSearch: boolean;
   onClearPress: () => void;
   onSearchPress: () => void;
+  onChangeText: ((text: string) => void) | undefined;
 };
 
 const CurrentHymnsHeader = ({
   onClearPress,
   onSearchPress,
   showSearch,
+  onChangeText,
 }: CurrentHymnsHeaderProps) => {
   const { t } = useTranslation();
 
@@ -28,6 +30,7 @@ const CurrentHymnsHeader = ({
           showClear
           onClearPress={onClearPress}
           containerStyle={styles.searchInput}
+          onChangeText={onChangeText}
         />
       ) : (
         <ScreenHeader>
