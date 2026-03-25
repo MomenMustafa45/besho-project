@@ -8,6 +8,5 @@ export const styles = StyleSheet.create({
   },
   listContentContainer: {
     padding: scaleSize(SPACING.lg),
-    flex: 1,
   },
 });
