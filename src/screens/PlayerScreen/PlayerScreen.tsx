@@ -1,5 +1,4 @@
 import React from 'react';
-import { Image } from 'react-native';
 import Video from 'react-native-video';
 import { styles } from './styles';
 import AppView from '../../components/UI/AppView/AppView';
@@ -14,7 +13,7 @@ import { PlayerStackNavigationType } from '../../navigation/PlayerStack';
 import HymnControllers from './components/HymnControllers/HymnControllers';
 import AppIcon from '../../components/UI/AppIcon/AppIcon';
 import useLangChecker from '../../hooks/useLangChecker';
-
+import FastImage from '@d11/react-native-fast-image';
 type HymnsPlayerScreenNavigationProp =
   NativeStackNavigationProp<PlayerStackNavigationType>;
 
@@ -59,7 +58,7 @@ const Mp3PlayerScreen = () => {
         <AppView style={styles.content}>
           {/* Album Art Placeholder */}
           <AppView style={styles.albumArt}>
-            <Image style={styles.songImg} source={{ uri: hymn.image }} />
+            <FastImage style={styles.songImg} source={{ uri: hymn.image }} />
           </AppView>
 
           <AppView style={styles.trackInfoContainer}>

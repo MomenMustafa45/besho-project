@@ -1,4 +1,3 @@
-import { Image } from 'react-native';
 import AppView from '../UI/AppView/AppView';
 import { Hymn } from '../../firebase/models/hymnModel';
 import React from 'react';
@@ -6,6 +5,7 @@ import AppText from '../UI/AppText/AppText';
 import { styles } from './styles';
 import AppPressable from '../UI/AppPressable/AppPressable';
 import { scaleHeight } from '../../designSystem/designSystem';
+import FastImage from '@d11/react-native-fast-image';
 
 type HymnItemProps = {
   item: Hymn;
@@ -27,9 +27,10 @@ const HymnItem = ({ item, isRTL, onPress, isGrid }: HymnItemProps) => {
   return (
     <AppPressable style={itemContainerShadow} onPress={onPress}>
       <AppView style={styles.itemImgContainer}>
-        <Image
+        <FastImage
           style={[styles.itemImg, { height: itemImageHeight }]}
-          source={{ uri: item.image }}
+          source={{ uri: item.image, priority: FastImage.priority.normal }}
+          resizeMode={FastImage.resizeMode.cover}
         />
       </AppView>
 

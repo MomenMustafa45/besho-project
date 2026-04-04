@@ -6,14 +6,14 @@ import { LocalizationEnum } from '../../locales';
 import englandFlag from '../../assets/images/united-kingdom.png';
 import arabicFlag from '../../assets/images/egypt.png';
 import { changeLanguage } from '../../utils/changeLanguage';
-import { Image, Share } from 'react-native';
+import { Share } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SettingsStackNavigationType } from '../../navigation/SettingsStack';
 import { styles } from './styles';
 import logo from '../../../logo.png';
 import RNRestart from 'react-native-restart-newarch';
-
+import FastImage from '@d11/react-native-fast-image';
 type SettingsNavigationType =
   NativeStackNavigationProp<SettingsStackNavigationType>;
 
@@ -46,7 +46,7 @@ https://your-android-link.com`,
   return (
     <AppView style={styles.settingsParent}>
       <AppView style={styles.headerContainer}>
-        <Image source={logo} style={styles.logo} />
+        <FastImage source={logo} style={styles.logo} />
       </AppView>
 
       <AppView style={styles.menuContainer}>

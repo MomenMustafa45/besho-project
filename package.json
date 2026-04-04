@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@d11/react-native-fast-image": "^8.13.0",
     "@legendapp/list": "^2.0.19",
     "@react-native-community/slider": "^5.1.2",
     "@react-native-vector-icons/entypo": "^12.4.3",

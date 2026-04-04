@@ -2,13 +2,12 @@ import React from 'react';
 import AppView from '../../components/UI/AppView/AppView';
 import AppText from '../../components/UI/AppText/AppText';
 import { styles } from './styles';
-import { Image } from 'react-native';
 import chrisBg from '../../assets/images/chris-bg.jpeg';
-
+import FastImage from '@d11/react-native-fast-image';
 const SplashScreen = () => {
   return (
     <AppView style={styles.screenParent}>
-      <Image source={chrisBg} style={styles.bgImgContainer} />
+      <FastImage source={chrisBg} style={styles.bgImgContainer} />
       <AppView style={styles.contentContainer}>
         <AppText style={styles.appName}>Coptic Taraneem</AppText>
         <AppText style={styles.appDesc}>
