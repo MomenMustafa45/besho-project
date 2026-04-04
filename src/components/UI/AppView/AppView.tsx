@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleProp, View, ViewProps, ViewStyle } from 'react-native';
+import useLangChecker from '../../../hooks/useLangChecker';
 
 interface Props extends ViewProps {
   padding?: number;
@@ -18,10 +19,13 @@ const AppView = ({
   style,
   ...rest
 }: Props) => {
+  const { isRTL } = useLangChecker();
   return (
     <View
       style={[
+        // eslint-disable-next-line react-native/no-inline-styles
         {
+          direction: isRTL ? 'rtl' : 'ltr',
           padding,
           margin,
           backgroundColor,

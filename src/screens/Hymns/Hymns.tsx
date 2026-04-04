@@ -25,7 +25,6 @@ const Hymns = () => {
   } = useHymnsListHandlers();
 
   const query = debouncedQuery.toLowerCase();
-  console.log('🚀 ~ Hymns ~ query:', query);
 
   const filteredHymns = !debouncedQuery
     ? hymns || []
