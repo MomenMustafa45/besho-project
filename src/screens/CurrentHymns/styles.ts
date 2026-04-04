@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   listContentContainer: {
     paddingTop: scaleSize(SPACING.xl),
-    paddingBottom: scaleHeight(150),
+    paddingBottom: scaleHeight(200),
     paddingHorizontal: scaleSize(SPACING.xxl),
   },
   row: {
