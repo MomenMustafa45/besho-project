@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppView from '../../components/UI/AppView/AppView';
 import AppText from '../../components/UI/AppText/AppText';
 import { styles } from './styles';
 import chrisBg from '../../assets/images/chris-bg.jpeg';
 import FastImage from '@d11/react-native-fast-image';
+import { MainNavigationType } from '../../navigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+
+type SplashNavigationProp = NativeStackNavigationProp<MainNavigationType>;
 const SplashScreen = () => {
+  const navigation = useNavigation<SplashNavigationProp>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.popTo('BottomTabs');
+    }, 3000);
+  }, [navigation]);
+
   return (
     <AppView style={styles.screenParent}>
       <FastImage source={chrisBg} style={styles.bgImgContainer} />
