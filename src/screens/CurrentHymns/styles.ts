@@ -14,10 +14,10 @@ export const styles = StyleSheet.create({
   listContentContainer: {
     paddingTop: scaleSize(SPACING.xl),
     paddingBottom: scaleHeight(200),
-    paddingHorizontal: scaleSize(SPACING.xxl),
+    paddingHorizontal: scaleSize(SPACING.xl),
   },
   row: {
-    gap: scaleSize(SPACING.lg),
+    justifyContent: 'space-between',
   },
   searchInput: {
     paddingHorizontal: scaleSize(SPACING.lg),

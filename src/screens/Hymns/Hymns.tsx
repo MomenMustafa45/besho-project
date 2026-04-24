@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import AppView from '../../components/UI/AppView/AppView';
 import { styles } from './styles';
-import { LegendList, LegendListRenderItemProps } from '@legendapp/list';
 import { Hymn } from '../../firebase/models/hymnModel';
 import HymnItem from '../../components/HymnItem/HymnItem';
 import useHymnsListHandlers from '../../hooks/useHymnsListHandlers';
@@ -9,6 +8,7 @@ import HymnsHeader from './components/HymnsHeader/HymnsHeader';
 import { useHymns } from '../../firebase/hooks/useHymns';
 import AppLoading from '../../components/UI/AppLoading/AppLoading';
 import AppEmptyList from '../../components/UI/AppEmptyList/AppEmptyList';
+import { FlatList } from 'react-native';
 
 const Hymns = () => {
   const [isGrid, setIsGrid] = useState(false);
@@ -38,7 +38,7 @@ const Hymns = () => {
     setIsGrid(!isGrid);
   };
 
-  const renderItem = ({ item }: LegendListRenderItemProps<Hymn>) => {
+  const renderItem = ({ item }: { item: Hymn }) => {
     return (
       <HymnItem
         item={item}
@@ -61,14 +61,14 @@ const Hymns = () => {
       {isLoading ? (
         <AppLoading />
       ) : (
-        <LegendList
+        <FlatList
           contentContainerStyle={styles.listContentContainer}
-          data={filteredHymns}
+          data={filteredHymns || []}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
           numColumns={isGrid ? 2 : 1}
-          columnWrapperStyle={styles.row}
+          columnWrapperStyle={isGrid ? styles.row : undefined}
           key={`${isGrid}`}
           ListEmptyComponent={AppEmptyList}
         />

@@ -15,7 +15,7 @@ const COLLECTION_NAME = 'coptic taraneem';
 const hymnsRef = collection(db, COLLECTION_NAME);
 
 export const getAllHymns = async (): Promise<Hymn[]> => {
-  const q = query(hymnsRef, orderBy('order'));
+  const q = query(hymnsRef, orderBy('order', 'desc'));
 
   const snapshot = await getDocs(q);
 

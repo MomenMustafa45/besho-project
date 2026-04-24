@@ -1,7 +1,6 @@
 import React from 'react';
 import { styles } from './styles';
 import AppView from '../../components/UI/AppView/AppView';
-import { LegendList, LegendListRenderItemProps } from '@legendapp/list';
 import HymnItem from '../../components/HymnItem/HymnItem';
 import { Hymn } from '../../firebase/models/hymnModel';
 import CurrentHymnsHeader from './components/CurrentHymnsHeader/CurrentHymnsHeader';
@@ -9,6 +8,7 @@ import useHymnsListHandlers from '../../hooks/useHymnsListHandlers';
 import { useCurrentHymns } from '../../firebase/hooks/useHymns';
 import AppLoading from '../../components/UI/AppLoading/AppLoading';
 import AppEmptyList from '../../components/UI/AppEmptyList/AppEmptyList';
+import { FlatList } from 'react-native';
 
 const CurrentHymns = () => {
   const {
@@ -33,7 +33,7 @@ const CurrentHymns = () => {
           hymn.nameEn?.toLowerCase().includes(query),
       );
 
-  const renderItem = ({ item }: LegendListRenderItemProps<Hymn>) => {
+  const renderItem = ({ item }: { item: Hymn }) => {
     return (
       <HymnItem
         item={item}
@@ -56,7 +56,7 @@ const CurrentHymns = () => {
       {isLoading ? (
         <AppLoading />
       ) : (
-        <LegendList
+        <FlatList
           contentContainerStyle={styles.listContentContainer}
           data={filteredHymns}
           renderItem={renderItem}
@@ -64,7 +64,7 @@ const CurrentHymns = () => {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           columnWrapperStyle={styles.row}
-          ListEmptyComponent={AppEmptyList}
+          ListEmptyComponent={<AppEmptyList />}
         />
       )}
     </AppView>

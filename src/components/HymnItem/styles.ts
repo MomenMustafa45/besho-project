@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import {
   COLORS,
   fontSizes,
@@ -8,6 +8,12 @@ import {
   SPACING,
 } from '../../designSystem/designSystem';
 
+const { width } = Dimensions.get('window');
+
+const horizontalPadding = scaleSize(SPACING.xl);
+const gap = scaleSize(SPACING.xxxl);
+const itemWidth = (width - horizontalPadding - gap) / 2;
+
 export const styles = StyleSheet.create({
   itemParent: {
     position: 'relative',
@@ -16,9 +22,8 @@ export const styles = StyleSheet.create({
     ...SHADOWS.large,
   },
   itemParentGrid: {
-    position: 'relative',
-    width: '100%',
     marginBottom: scaleHeight(SPACING.xxl),
+    width: itemWidth,
   },
   itemImgContainer: {
     width: '100%',
