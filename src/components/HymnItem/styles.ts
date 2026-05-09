@@ -4,7 +4,6 @@ import {
   fontSizes,
   scaleHeight,
   scaleSize,
-  SHADOWS,
   SPACING,
 } from '../../designSystem/designSystem';
 
@@ -19,7 +18,6 @@ export const styles = StyleSheet.create({
     position: 'relative',
     width: '100%',
     marginBottom: scaleHeight(SPACING.xxl),
-    ...SHADOWS.large,
   },
   itemParentGrid: {
     marginBottom: scaleHeight(SPACING.xxl),

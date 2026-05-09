@@ -32,10 +32,10 @@ const Settings = () => {
       await Share.share({
         message: `Check out this app:
 iOS (App Store):
-https://your-ios-link.com
+https://apps.apple.com/us/app/coptic-taranem/id6762490867
 
 Android (Google Play):
-https://your-android-link.com`,
+https://play.google.com/store/apps/details?id=com.smartlytechs.coptic_taraneem_new`,
         title: 'Share App',
       });
     } catch (error) {

@@ -1,4 +1,4 @@
-package com.beshoyproject
+package com.smartlytechs.coptic_taraneem_new
 
 import android.app.Application
 import com.facebook.react.PackageList

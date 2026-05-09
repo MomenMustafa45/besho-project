@@ -1,4 +1,5 @@
-package com.beshoyproject
+package com.smartlytechs.coptic_taraneem_new
+
 import android.os.Bundle
 import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory
 import com.facebook.react.ReactActivity
